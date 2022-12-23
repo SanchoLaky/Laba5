@@ -39,9 +39,9 @@ class Injector {
      * @param obj an object of any class
      * @return returns an object with initialized fields with the AutoInjectable annotation
      */
-    <T> T inject(T obj) throws IOException, IllegalAccessException, InstantiationException {
-        Class dependency;
-        Class cl = obj.getClass();
+    <T> T inject(T obj) throws IllegalAccessException, InstantiationException {
+        Class<?> dependency;
+        Class<?> cl = obj.getClass();
         Field[] fields = cl.getDeclaredFields();
         for (Field field: fields){
             Annotation a = field.getAnnotation(AutoInjectable.class);
