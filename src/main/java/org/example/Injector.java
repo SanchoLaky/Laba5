@@ -1,6 +1,5 @@
 package org.example;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.Properties;
@@ -19,18 +18,26 @@ class Injector {
      * whose path is passed as a parameter
      * @param pathToPropertiesFile full path to the configuration file
      */
-    Injector(String pathToPropertiesFile) throws IOException {
-        properties = new Properties();
-        properties.load(new FileInputStream(pathToPropertiesFile));
+    Injector(String pathToPropertiesFile)  {
+        try {
+            properties = new Properties();
+            properties.load(new FileInputStream(pathToPropertiesFile));
+        } catch (Exception e) {
+            System.out.println("Error! Properties file not found!");
+        }
     }
 
     /**
      * The default constructor. Initializes the configuration object with the file inj.properties
      */
-    Injector() throws IOException {
-        String pathToPropertiesFile = "src\\main\\java\\org\\example\\properties\\inj.properties";
-        properties = new Properties();
-        properties.load(new FileInputStream(pathToPropertiesFile));
+    Injector() {
+        try {
+            String pathToPropertiesFile = "src\\main\\java\\org\\example\\properties\\inj.properties";
+            properties = new Properties();
+            properties.load(new FileInputStream(pathToPropertiesFile));
+        } catch (Exception e) {
+            System.out.println("Error! Properties file not found!");
+        }
     }
     /**
      * method accepts an arbitrary object, examines it for the presence of fields with an AutoInjectable annotation.
