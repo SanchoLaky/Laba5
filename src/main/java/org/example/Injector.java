@@ -9,7 +9,7 @@ import java.util.Properties;
  * marked with the @AutoInjectable
  */
 
-class Injector<T> {
+class Injector {
     /**
     * reference to the configuration object
     */
@@ -39,7 +39,7 @@ class Injector<T> {
      * @param obj an object of any class
      * @return returns an object with initialized fields with the AutoInjectable annotation
      */
-    T inject(T obj) throws IOException, IllegalAccessException, InstantiationException {
+    <T> T inject(T obj) throws IOException, IllegalAccessException, InstantiationException {
         Class dependency;
         Class cl = obj.getClass();
         Field[] fields = cl.getDeclaredFields();
